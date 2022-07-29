@@ -3,9 +3,13 @@ Local Storage con JavaScript
 Metodos:  setItem, getItem, removeItem, clear, key, length
 
 Abajo los problemas:
--no arma bien los id de los botones cuando el numero de la serie es mayoy a 9 (dos digitos), porque hago un slice que toma solamente el ultimo digito. SOLUCIONADO
-
--problema con la validacion, sigue mostrando los mensajes de error en las etiquetas, despues de cerrar y volver a abrir el modal de ingreso de nueva serie.
+-SOLUCIONADO no arma bien los id de los botones cuando el numero de la serie es mayoy a 9 (dos digitos), porque hago un slice que toma solamente el ultimo digito. 
+-SOLUCIONADO problema con la validacion, sigue mostrando los mensajes de error en las etiquetas, despues de cerrar y volver a abrir el modal de ingreso de nueva serie.
+-SOLUCIONADO CON "word-break: break-all;"" parrafo que se rompe si se pone una palabra demasiado larga, mas del ancho del contenedor. 
+    Esto genera que se amplie el ancho del documento y la ubicaciones puestas con porcentajes, por eso habria que cambiar a viewports.
+-SOLUCIONADO Error en la validacion de la cantidad de capitulos. Permite poner un cero por teclado.
+Mejoras:
+-
  *******************************/
 
 /*******************************
@@ -95,14 +99,26 @@ const resetearValidaciones = () => {
     serieValidaciones["nueva_serie_descripcion"] = false;
     serieValidaciones["nueva_serie_cantidad_capitulos"] = false;       
     }    
-
+const evaluarValidaciones = () => {
+    if (serieValidaciones["nueva_serie_titulo"] == true && 
+        serieValidaciones["nueva_serie_descripcion"] == true && 
+        serieValidaciones["nueva_serie_cantidad_capitulos"] == true){
+            return true;
+        }else{
+            return false;
+        }
+}
 
 // muestra el modal de ingreso de nueva serie. recibe: el id del modal
 const mostrarOcultarModalNuevaSerie = (idModal) => {
     $modalNuevaSerie = $d.getElementById(idModal);
     $modalNuevaSerie.classList.toggle("oculto");
     if (!$mensajeErrorLabel.classList.contains("oculto")){$mensajeErrorLabel.classList.add("oculto");}
-    const $imputsModal = $modalNuevaSerie.querySelectorAll("input");
+    let  $imputsModal = $modalNuevaSerie.querySelectorAll("input");
+    $imputsModal.forEach((elemento) => {
+        elemento.value = "";
+    });
+    $imputsModal = $modalNuevaSerie.querySelectorAll("textarea");
     $imputsModal.forEach((elemento) => {
         elemento.value = "";
     });
@@ -114,45 +130,45 @@ Hacer una funcion mas genericas para mostrar u ocultar modales,
 ademas tiene que validar campos y actualizar estados de cada validacion
 */
 const mostrarOcultarModal = (idModal) => {
-    $modal = $d.getElementById(idModal);  
-    
-    $modal.classList.toggle("oculto");
-    
+    $modal = $d.getElementById(idModal);      
+    $modal.classList.toggle("oculto");    
 }
 
 //valida el formulario par una nueva serie
-const validarCampo = (idCampo) => {
-    
+const validarCampo = (idCampo) => {    
     let esValido = true;
-    let campoValidar = $d.getElementById(idCampo);
+    let $campoValidar = $d.getElementById(idCampo);
     let $mensajeErrorLabelActual = $d.getElementById(`mensaje_error_${idCampo}`);
-    console.log(`validando el campo: "${idCampo}" con el valor: ${campoValidar.value}\nla etiqueta es : ${$mensajeErrorLabelActual}`);    
-    if (campoValidar.value == ""){
+    //console.clear();
+    console.log(`validando el campo: "${idCampo}" con el valor: ${$campoValidar.value}\nla etiqueta es : ${$mensajeErrorLabelActual}`);    
+
+    if(idCampo == "nueva_serie_titulo" || idCampo == "nueva_serie_descripcion"){
+        if ($campoValidar.value == ""){
         console.log("no puede estar vacio");                
         esValido = false;
-    }else {
-        console.log("perfecto");
-        esValido = true;
-    } 
-    console.log(esValido);
-    /*
-    //si  el campo es valido
-    if (esValido){
-        if (!$mensajeErrorLabel.classList.contains("oculto")){
-            $mensajeErrorLabel.classList.add("oculto");
-        }
-    //si no es valido
-    }else{        
-        $mensajeErrorLabel.innerHTML = "faltan validaciones";
-        $mensajeErrorLabel.classList.remove("oculto");
-        }   
-    */
+        }else {
+            console.log("perfecto");
+            esValido = true;
+        } 
+    }
+    if (idCampo == "nueva_serie_cantidad_capitulos"){
+        if ($campoValidar.value == ""){
+            console.log("no puede estar vacio");                
+            esValido = false;
+        }else if ($campoValidar.value != 0){
+                console.log("perfecto");
+                esValido = true;
+            }else{
+                console.log("No puede ser 0");
+                esValido = false;
+            }         
+    }
+    
+    console.log(esValido);   
     serieValidaciones[idCampo] = esValido;
-    console.clear();
+    //console.clear();
     console.log(serieValidaciones);
 }
-
-
 /*
  <!--plantilla para la vista de una serie
 <div id="serie_1" class="serie">
@@ -203,6 +219,8 @@ const mostrarMensajeError = (mensaje) => {
     $mensajeErrorLabel.innerHTML = mensaje;
 }
 
+const ocultarMensajeError = () => {$mensajeErrorLabel.classList.add("oculto");}
+
 /**************************************
  Manejadores de eventos
  *************************************/
@@ -220,15 +238,12 @@ const mostrarMensajeError = (mensaje) => {
         evento.preventDefault();
         if (evento.target.id == "nueva_serie_btn_agregar"){
             //console.log("boton de agregar en el formulario nueva serie");
-            if (serieValidaciones["nueva_serie_titulo"] == true && 
-                serieValidaciones["nueva_serie_descripcion"] == true && 
-                serieValidaciones["nueva_serie_cantidad_capitulos"] == true){
+            if (evaluarValidaciones() == true){
                     agregarSerie("nueva_serie_titulo", "nueva_serie_descripcion", "nueva_serie_cantidad_capitulos", "imagenPasada.jpg", "nueva_serie");      
                     mostrarOcultarModalNuevaSerie("modal_nueva_serie");     
                     mostrarTodasLasSeries(series, "series_contenedor");
             }else{
-                console.log("faltan validaciones");
-                //$d.getElementById("mensaje_error_nueva_serie");
+                console.log("faltan validaciones");                
                 mostrarMensajeError("Debe completar todos los campos!");
             }
         }
@@ -285,7 +300,7 @@ const mostrarMensajeError = (mensaje) => {
             console.log("registrandose");
         }
     }  
-    if (evento.target.matches("input")){
+    if (evento.target.matches("input") || evento.target.matches("textarea")){
         let idCampoValidar = evento.target.id;
         //console.log("levantaste una tecla en un input del modal ", idCampoValidar);
         validarCampo(idCampoValidar);
@@ -294,10 +309,9 @@ const mostrarMensajeError = (mensaje) => {
  })
 
  $d.addEventListener("keyup", (evento) => {
-    if (evento.target.matches("input")){
+    if (evento.target.matches("input") || evento.target.matches("textarea")){
         let idCampoValidar = evento.target.id;
         //console.log("levantaste una tecla en un input del modal ", idCampoValidar);
-        validarCampo(idCampoValidar);
-        //mostrarMensajeError("error desde la funcion")
+        validarCampo(idCampoValidar);        
     }
  })

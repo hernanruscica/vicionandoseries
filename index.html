@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,8 +62,10 @@
                 <input type="text" name="nueva_serie_titulo" required id="nueva_serie_titulo" placeholder="ingrese el titulo" value = "">                    
             </div>
             <div class="campo">
-                <label class="nueva_serie_descripcion" for = "nueva_serie_descripcion">Descripcion:</label>
-                <input type="text" name="nueva_serie_descripcion" required id="nueva_serie_descripcion" placeholder="ingrese la descripcion" value = "" >                    
+                <label class="nueva_serie_descripcion" for = "nueva_serie_descripcion">Abajo puede dejar un comentario sobre la serie a seguir (temporadas, capitulos, etc):</label>
+                <!--<input type="text" name="nueva_serie_descripcion" required id="nueva_serie_descripcion" placeholder="ingrese la descripcion" value = "" >-->                    
+                <textarea name="nueva_serie_descripcion" id="nueva_serie_descripcion" class="nueva_serie_descripcion_textarea"
+                    cols="30" rows="4"></textarea>
             </div>            
             <div class="campo cantidad_capitulos_row">
                 <label for="nueva_serie_cantidad_capitulos" class="cantidad_capitulos_label">Cantidad de capitulos</label>

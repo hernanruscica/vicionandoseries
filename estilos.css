@@ -9,7 +9,7 @@
     --main-bg-color: #83c5be;
     --series-bg-color: #faebd7;
     --modal-bg-color: #edf6f9;
-    --btn-alert-color: #eb291c;
+    --btn-alert-color: #e29578;
 }
 
 body{
@@ -51,7 +51,6 @@ body{
     border: solid #AAA 1px;
     border-radius: 0px 0px 15px 15px;
 }
-
 }
 
 .titulo_serie{
@@ -64,6 +63,7 @@ body{
     font-size: 1.2em;
     margin-bottom: 0.4em;
     text-align: left;    
+    word-break: break-all;
 }
 
 .avance_capitulos{
@@ -97,12 +97,11 @@ body{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
     border-radius: 0px;
     width: 100%;
-    height: 20px;    
-    
+    height: 20px;        
 }
 
 .progreso_barra::-webkit-progress-value {
-    background-color: rgb(43, 158, 43);
+    background-color: var(--header-bg-color);
 }
 
 .cabecera {
@@ -142,7 +141,7 @@ body{
     font-size: 1.2em;
     padding: 0.3em 0.6em;
     border: none;    
-    color: #ddd;
+    color: #333;
     border: var(--header-bg-color) solid thin;
 }
 
@@ -209,11 +208,30 @@ body{
 
 .cantidad_capitulos_label{
     flex: 3;
+    font-weight: 300;
 }
 
 .cantidad_capitulos_input{
     flex: 1;
 }
+
+.nueva_serie_titulo{
+    font-weight: 300;
+}
+
+.nueva_serie_descripcion{
+    font-size: 0.7em;
+    font-weight: 500;    
+}
+
+.nueva_serie_descripcion_textarea{
+    width: 100%;
+    margin-top: 0.2em;
+    padding: 0.6em;
+    font-size: 1em;
+    resize: none;
+}
+
 
 .nueva_serie_mensaje_error{
     color: var(--btn-alert-color);
