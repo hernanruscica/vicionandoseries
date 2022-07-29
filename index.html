@@ -19,7 +19,12 @@
     <h1>Local Storage con JavaScript</h1>
     -->
     <header class ="cabecera" id = "cabecera">
-        <button id="nueva_serie" class="btn">+ nueva serie</button>
+        
+        <button id="nueva_serie" class="btn btn_nueva_serie">                
+            + Serie
+        </button>
+        
+        
         <!--
         <button id="ingresar" class="btn">Ingresar</button>
         <button id="registrarse" class="btn">Registrarse</button>
@@ -55,18 +60,18 @@
     <div id="modal_nueva_serie" class="modal oculto">        
         <form id="nueva_serie" class="nueva_serie">
             <h3 class="modal_titulo">Agregar nueva serie</h3>
-            <div class="campo">
+            <div class="campo campo_nueva_serie_titulo">
                 <label class="nueva_serie_titulo" for="nueva_serie_titulo">Título:</label>
                 <input type="text" name="nueva_serie_titulo" required id="nueva_serie_titulo" placeholder="ingrese el titulo" value = "">                    
             </div>
             <div class="campo">
-                <label class="nueva_serie_descripcion" for = "nueva_serie_descripcion">Abajo puede dejar un comentario sobre la serie a seguir (temporadas, capitulos, etc):</label>
+                <label class="nueva_serie_descripcion" for = "nueva_serie_descripcion">Abajo puede dejar un comentario sobre la serie a seguir (temporadas, capítulos, etc):</label>
                 <!--<input type="text" name="nueva_serie_descripcion" required id="nueva_serie_descripcion" placeholder="ingrese la descripcion" value = "" >-->                    
                 <textarea name="nueva_serie_descripcion" id="nueva_serie_descripcion" class="nueva_serie_descripcion_textarea"
                     cols="30" rows="4"></textarea>
             </div>            
             <div class="campo cantidad_capitulos_row">
-                <label for="nueva_serie_cantidad_capitulos" class="cantidad_capitulos_label" id = "nueva_serie_cantidad_capitulos_label">Cantidad de capitulos</label>
+                <label for="nueva_serie_cantidad_capitulos" class="cantidad_capitulos_label" id = "nueva_serie_cantidad_capitulos_label">Cantidad de capítulos:</label>
                 <input type="number" name = "nueva_serie_cantidad_capitulos" min = "1" class="cantidad_capitulos_input" required 
                 id="nueva_serie_cantidad_capitulos" placeholder="N°" value = "">                    
             </div>            
@@ -81,10 +86,10 @@
     <!--modal_confirmacion-->
     <div id="modal_confirmacion" class="modal_confirmacion oculto">  
         <div class="modal_confirmacion_ventana">
-            <p class="modal_titulo">Desea eliminar la serie?</p>
+            <p class="modal_titulo">¿Desea eliminar la serie?</p>
             <div class="botonera">
-                <button class="btn alert" id="modal_confirmacion_si">Si</button>        
-                <button class="btn" id="modal_confirmacion_no">No</button>
+                <button class="btn alert" id="modal_confirmacion_si">SÍ</button>        
+                <button class="btn" id="modal_confirmacion_no">NO</button>
             </div>
         </div>      
     </div>

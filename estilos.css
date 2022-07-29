@@ -10,6 +10,10 @@
     --series-bg-color: #faebd7;
     --modal-bg-color: #edf6f9;
     --btn-alert-color: #ef233c;
+    --progressBar-bg-color: #edf6f9;
+    --progressBar-value-color: #006d77;
+    --btn-txt-color: #222;
+    --serie-text-color: #014247;
 }
 
 body{
@@ -30,14 +34,16 @@ body{
     min-width: 300px;
     width: 100%;    
     background-color: var(--series-bg-color);
+    color: var(--serie-text-color);
     text-align: center;
     margin: 0em auto 1.8em auto;
     padding: 1em 1.5em 1.5em 1.5em;
     box-shadow: 9px 10px 9px 0px rgb(0 0 0 / 10%);
     border: solid #AAA 1px;    
+
 }
 
-@media (min-width: 400px){
+@media (min-width: 420px){
 /* para los tamaños mas grandes*/
 .serie{
     position: relative;
@@ -57,6 +63,7 @@ body{
     font-weight: 300;
     font-size: 1.8em;
     margin: 0.6em 0em;
+    word-break: break-all;
 }
 
 .descripcion_serie{
@@ -76,8 +83,13 @@ body{
     flex: 3;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     font-size: 1.2em;
+}
+
+.capitulos_serie{
+    margin-bottom: 0.4em;
+    text-align: left;
 }
 
 .botonera {
@@ -93,7 +105,7 @@ body{
     width: 100%;        
 }
 .progreso_barra::-webkit-progress-bar{
-    background-color: #DDD;
+    background-color: var(--progressBar-bg-color);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
     border-radius: 0px;
     width: 100%;
@@ -101,12 +113,12 @@ body{
 }
 
 .progreso_barra::-webkit-progress-value {
-    background-color: var(--header-bg-color);
+    background-color: var(--progressBar-value-color);
 }
 
 .cabecera {
     background-color: var(--header-bg-color);
-    padding: 1em;
+    padding: 0.3em;
 }
 
 .btn{        
@@ -141,7 +153,7 @@ body{
     font-size: 1.2em;
     padding: 0.3em 0.6em;
     border: none;    
-    color: #333;
+    color: var(--btn-txt-color);
     border: var(--header-bg-color) solid thin;
 }
 
@@ -162,15 +174,15 @@ body{
 
 .modal_titulo{
     text-align: left;
-    margin-bottom: 1em;
+    margin: 0.5em 0;
     font-weight: 300;
     font-size: 1.2em;
-
 }
 
 .modal input {
     font-size: 0.8em;
     padding: 0.2em 0.4em;
+    margin-left: 0.8em;
     border-radius: 5px;
     width: 100%;
 }
@@ -179,7 +191,7 @@ body{
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-width: 360px;
+    min-width: 390px;
     max-width: 460px;
     background-color: var(--modal-bg-color); 
     text-align: center;
@@ -190,7 +202,7 @@ body{
 
 .campo{
     text-align: left;
-    margin-bottom: 0.8em;
+    margin-bottom: 0.4em;
 }
 
 .campo button {
@@ -215,10 +227,23 @@ body{
 
 .cantidad_capitulos_input{
     flex: 1;
+    border-radius: 0;
+    border: #333 1px solid;
 }
 
 .nueva_serie_titulo{
     font-weight: 300;
+    margin-top: 0.2em;
+}
+
+.campo_nueva_serie_titulo{
+    display: flex;
+    flex-direction: row;
+}
+
+.campo_nueva_serie_titulo input{
+    border-radius: 0;
+    border: #333 1px solid;
 }
 
 .nueva_serie_descripcion{
@@ -285,4 +310,26 @@ body{
 
 .oculto{
     display: none;
+}
+
+.icono_mas{
+    color: var(--modal-bg-color);
+    font-size: 2em;
+}
+
+.btn_nueva_serie{
+    display: flex;
+    flex-direction: row;
+    align-items: center;       
+}
+.btn_nueva_serie p {
+    color: var(--modal-bg-color);
+    text-transform: uppercase;
+    font-size: 1.5em;
+}
+.btn_nueva_serie{
+    background-color: var(--header-bg-color);
+    color: var(--modal-bg-color);
+    border: none;
+    font-size: 1.5em;
 }
