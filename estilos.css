@@ -1,0 +1,264 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --header-bg-color: #006d77;
+    --main-bg-color: #83c5be;
+    --series-bg-color: #faebd7;
+    --modal-bg-color: #edf6f9;
+    --btn-alert-color: #eb291c;
+}
+
+body{
+    z-index: 1; 
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--main-bg-color);
+}
+
+.series_contenedor{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.serie {
+    position: relative;
+    min-width: 300px;
+    width: 100%;    
+    background-color: var(--series-bg-color);
+    text-align: center;
+    margin: 0em auto 1.8em auto;
+    padding: 1em 1.5em 1.5em 1.5em;
+    box-shadow: 9px 10px 9px 0px rgb(0 0 0 / 10%);
+    border: solid #AAA 1px;    
+}
+
+@media (min-width: 460px){
+/* para los tamaños mas grandes*/
+.serie{
+    position: relative;
+    min-width: 300px;
+    width: 90%;
+    max-width: 360px;    
+    text-align: center;
+    margin: 1em auto 1.8em auto;
+    padding: 1em;
+    box-shadow: 9px 10px 9px 0px rgba(0,0,0,0.1);
+    border: solid #AAA 1px;
+    border-radius: 0px 0px 15px 15px;
+}
+
+}
+
+.titulo_serie{
+    font-weight: 300;
+    font-size: 1.8em;
+    margin: 0.6em 0em;
+}
+
+.descripcion_serie{
+    font-size: 1.2em;
+    margin-bottom: 0.4em;
+    text-align: left;    
+}
+
+.avance_capitulos{
+    display: flex;
+    flex-direction: row;
+    padding: 0.4em 0em;
+}
+
+.progreso{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.botonera {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding-left: 0.4em;
+}
+
+.progreso_barra {
+    appearance: none;
+    width: 100%;        
+}
+.progreso_barra::-webkit-progress-bar{
+    background-color: #DDD;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    border-radius: 0px;
+    width: 100%;
+    height: 20px;    
+    
+}
+
+.progreso_barra::-webkit-progress-value {
+    background-color: rgb(43, 158, 43);
+}
+
+.cabecera {
+    background-color: var(--header-bg-color);
+    padding: 1em;
+}
+
+.btn{        
+    cursor: pointer;
+    padding: 0.4em 0.4em;
+    font-size: 0.9em;
+    color: var(--header-bg-color);
+}
+.btn:hover{
+    transform: scale(0.96);
+}
+
+.alert{
+    background-color: var(--btn-alert-color);    
+    color: #ddd;         
+}
+
+.btn_mas,
+.btn_menos {
+    padding: 0.1em 0.4em;
+    font-size: 1.6em;
+    border: none; 
+    color: var(--header-bg-color);
+    border: var(--header-bg-color) solid thin;
+}
+
+.btn_eliminar,
+.btn_modal_cerrar{
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 1.2em;
+    padding: 0.3em 0.6em;
+    border: none;    
+    color: #ddd;
+    border: var(--header-bg-color) solid thin;
+}
+
+.btn_modal_cerrar{
+    font-size: 0.8em;
+}
+
+
+.modal{
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    font-size: 1.4em;    
+}
+
+.modal_titulo{
+    text-align: left;
+    margin-bottom: 1em;
+    font-weight: 300;
+    font-size: 1.2em;
+
+}
+
+.modal input {
+    font-size: 0.8em;
+    padding: 0.2em 0.4em;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.nueva_serie{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 400px;
+    max-width: 460px;
+    background-color: var(--modal-bg-color); 
+    text-align: center;
+    margin: 0em auto ;
+    padding: 0.4em 2em 0.6em 2em;
+    position: relative;
+}
+
+.campo{
+    text-align: left;
+    margin-bottom: 0.8em;
+}
+
+.campo button {
+    width: 100%;
+    padding: 0.2em 0em;
+    border: var(--header-bg-color) solid thin;
+}
+
+.cantidad_capitulos_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: flex-end;    
+}
+
+.cantidad_capitulos_label{
+    flex: 3;
+}
+
+.cantidad_capitulos_input{
+    flex: 1;
+}
+
+.nueva_serie_mensaje_error{
+    color: var(--btn-alert-color);
+    font-size: 0.8em;
+}
+
+.usuario{
+    text-decoration: none;
+    color: #DDD;
+    text-transform: uppercase;
+}
+
+
+.modal_confirmacion{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    font-size: 1.4em;   
+    display: flex;        
+    justify-content: center;   
+    
+}
+
+.modal_confirmacion_ventana{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;    
+    background-color: var(--modal-bg-color);   
+    width: 100%; 
+    max-width: 400px;
+    min-width: 340px;
+    height: 200px;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.modal_confirmacion_ventana .btn{
+    padding: 0.6em 0.8em;
+    
+    border: var(--header-bg-color) solid thin;
+}
+
+.oculto{
+    display: none;
+}

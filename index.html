@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vicionado de series</title>
+    
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Mis estilos-->
+    <link rel="stylesheet" href="estilos.css">    
+</head>
+<body> 
+    <!--
+    <h1>Local Storage con JavaScript</h1>
+    -->
+    <header class ="cabecera" id = "cabecera">
+        <button id="nueva_serie" class="btn">+ nueva serie</button>
+        <!--
+        <button id="ingresar" class="btn">Ingresar</button>
+        <button id="registrarse" class="btn">Registrarse</button>
+        <a href="#" id="invitado" class="usuario">invitado</a>
+        -->
+    </header>
+
+    <main id = "series_contenedor" class="series_contenedor"></main>
+    <!--plantilla para la vista de una serie
+    <div id="serie_1" class="serie">
+        <h3 id="titulo_serie_1" class="titulo_serie">
+            titulo serie largo y que no entra en una linea
+        </h3>
+        <p id="descripcion_serie_1" class="descripcion_serie">
+            Descripcion serie: Lorem ipsum dolor sit amet consectetur 
+        </p>       
+        <div class="avance_capitulos">
+            <div class="progreso">
+                <p id="capitulos_serie_1" class="capitulos_serie">
+                    Capitulo 1 de 24
+                </p>            
+                <progress id = "progreso_barra_1" class="progreso_barra" max = "24" value = "10"></progress>
+            </div>
+            <div class="botonera">
+                <button id="btn_menos_serie_1" class="btn btn_menos">-</button>
+                <button id="btn_mas_serie_1" class="btn btn_mas">+</button>
+            </div>        
+        </div>         
+        <button class="btn btn_eliminar alert">X</button>
+    </div>
+    -->
+
+
+    <!--plantilla para el formulario para agregar una serie-->
+    <div id="modal_nueva_serie" class="modal oculto">        
+        <form id="nueva_serie" class="nueva_serie">
+            <h3 class="modal_titulo">Agregar nueva serie</h3>
+            <div class="campo">
+                <label class="nueva_serie_titulo" for="nueva_serie_titulo">Título:</label>
+                <input type="text" name="nueva_serie_titulo" required id="nueva_serie_titulo" placeholder="ingrese el titulo" value = "">                    
+            </div>
+            <div class="campo">
+                <label class="nueva_serie_descripcion" for = "nueva_serie_descripcion">Descripcion:</label>
+                <input type="text" name="nueva_serie_descripcion" required id="nueva_serie_descripcion" placeholder="ingrese la descripcion" value = "" >                    
+            </div>            
+            <div class="campo cantidad_capitulos_row">
+                <label for="nueva_serie_cantidad_capitulos" class="cantidad_capitulos_label">Cantidad de capitulos</label>
+                <input type="number" name = "nueva_serie_cantidad_capitulos" min = "1" class="cantidad_capitulos_input" required 
+                id="nueva_serie_cantidad_capitulos" placeholder="N°" value = "">                    
+            </div>            
+            <div class="campo">                
+                <button class="btn btn_modal" id = "nueva_serie_btn_agregar">Agregar</button>                
+            </div>
+            <button class="btn alert btn_modal_cerrar" id = "nueva_serie_btn_cerrar">X</button>
+            <label  id="nueva_serie_mensaje_error" class="nueva_serie_mensaje_error oculto">Mensaje de error</label>
+        </form>
+    </div>
+
+    <!--modal_confirmacion-->
+    <div id="modal_confirmacion" class="modal_confirmacion oculto">  
+        <div class="modal_confirmacion_ventana">
+            <p class="modal_titulo">Desea eliminar la serie?</p>
+            <div class="botonera">
+                <button class="btn alert" id="modal_confirmacion_si">Si</button>        
+                <button class="btn" id="modal_confirmacion_no">No</button>
+            </div>
+        </div>      
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
