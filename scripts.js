@@ -19,6 +19,7 @@ Mejoras:
     let contadorSeries = parseInt(localStorage.getItem("contadorSeries")) || 0;
 
     let idNumeroActual = null;
+    let MAXIMO_NUMERO_CAPITULOS = 2000;
 
     const serieValidaciones = {
         "nueva_serie_titulo": false,
@@ -155,7 +156,7 @@ const validarCampo = (idCampo) => {
         if ($campoValidar.value == ""){
             console.log("no puede estar vacio");                
             esValido = false;
-        }else if ($campoValidar.value != 0){
+        }else if ($campoValidar.value > 0 && $campoValidar.value < MAXIMO_NUMERO_CAPITULOS){
                 console.log("perfecto");
                 esValido = true;
             }else{
