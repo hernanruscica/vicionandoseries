@@ -9,8 +9,13 @@ Abajo los problemas:
     Esto genera que se amplie el ancho del documento y la ubicaciones puestas con porcentajes, por eso habria que cambiar a viewports.
 -SOLUCIONADO Error en la validacion de la cantidad de capitulos. Permite poner un cero por teclado.
 Mejoras:
--
+18/10/2022
+- El formulario de "Ingresar nueva serie", debe poder: Ingresar la imagen de fondo de la serie, enlace al sitio donde se esta viendo.
+- En la "Ficha de la serie vicionada", debe poder: ver el enlace al sitio donde se alojan los capitulos o referencia a la carpeta, la imagen de fondo.
+- Mejorar el diseño de la pagina de "vicionado de serie"
+- Para mas adelante queda algo de refactoring
  *******************************/
+
 
 /*******************************
     Variables y constantes globales
@@ -20,6 +25,7 @@ Mejoras:
 
     let idNumeroActual = null;
     let MAXIMO_NUMERO_CAPITULOS = 2000;
+    let TAMANIO_MAX_IMAGEN = 1.5 * 1024 * 1024
 
     const serieValidaciones = {
         "nueva_serie_titulo": false,
@@ -38,17 +44,19 @@ Mejoras:
 
     $d = document;
     const $mensajeErrorLabel = $d.getElementById("nueva_serie_mensaje_error");
-
+    const $fileImage = $d.getElementById("imagen-archivo");
+    
 /**********************************
  Funciones utilitarias
  ************************************/
 
-//agrega una nueva serie al array de series. recibe: los ids de titulo, descripcion, cantidad de capitulos del formulario de nueva serie
-const agregarSerie = (idTitulo, idDescripcion, idCantidadCapitulos, imagen, idContenedor) => {
+//agrega una nueva serie al array de series. recibe: los ids de titulo, descripcion, cantidad de capitulos, enlace del formulario de nueva serie, y por ultimo el id del contenedor 
+const agregarSerie = (idTitulo, idDescripcion, idCantidadCapitulos, imagen, idEnlace, idContenedor) => {
 
     let tituloSerie = $d.getElementById(idTitulo).value;
     let descripcionSerie = $d.getElementById(idDescripcion).value;
     let cantidadCapitulosSerie = parseInt($d.getElementById(idCantidadCapitulos).value);
+    let enlaceHtml = $d.getElementById(idEnlace).value;
     let nuevoId = contadorSeries + 1;
 
     series.push({
@@ -57,6 +65,7 @@ const agregarSerie = (idTitulo, idDescripcion, idCantidadCapitulos, imagen, idCo
         descripcion: descripcionSerie, 
         cantidadCapitulos: cantidadCapitulosSerie, 
         capituloActual: 0,
+        enlace: enlaceHtml,
         imagen: "imagen.png"});    
     contadorSeries += 1;
     localStorage.setItem("data", JSON.stringify(series));
@@ -204,7 +213,7 @@ const mostrarTodasLasSeries = (series, idContenedor) => {
                                         <button id="btn_menos_serie_${elemento.id}" class="btn btn_menos">-</button>
                                         <button id="btn_mas_serie_${elemento.id}" class="btn btn_mas">+</button>
                                     </div>        
-                                </div>         
+                                </div>                                   
                                 <button class="btn btn_eliminar alert" id="btn_eliminar_${elemento.id}">X</button>
                             </div>`
 
@@ -240,7 +249,7 @@ const ocultarMensajeError = () => {$mensajeErrorLabel.classList.add("oculto");}
         if (evento.target.id == "nueva_serie_btn_agregar"){
             //console.log("boton de agregar en el formulario nueva serie");
             if (evaluarValidaciones() == true){
-                    agregarSerie("nueva_serie_titulo", "nueva_serie_descripcion", "nueva_serie_cantidad_capitulos", "imagenPasada.jpg", "nueva_serie");      
+                    agregarSerie("nueva_serie_titulo", "nueva_serie_descripcion", "nueva_serie_cantidad_capitulos", "imagenPasada.jpg", "nueva_serie_enlace", "nueva_serie");      
                     mostrarOcultarModalNuevaSerie("modal_nueva_serie");     
                     mostrarTodasLasSeries(series, "series_contenedor");
             }else{
@@ -316,3 +325,18 @@ const ocultarMensajeError = () => {$mensajeErrorLabel.classList.add("oculto");}
         validarCampo(idCampoValidar);        
     }
  })
+/*
+ $fileImage.addEventListener("change", (e) => {
+    if (e.target.id == 'imagen-archivo'){
+        e.preventDefault();
+        let fileImage = $fileImage.files[0];
+        if (fileImage != null ){
+            if (fileImage.size < TAMANIO_MAX_IMAGEN){
+                console.log("Archivo correcto", fileImage.size, TAMANIO_MAX_IMAGEN);            
+            }            
+            }else{
+                console.log("Archivo incorrecto", fileImage.size, TAMANIO_MAX_IMAGEN);                        
+            }
+    }
+ })
+*/

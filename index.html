@@ -55,7 +55,7 @@
         </div>         
         <button class="btn btn_eliminar alert">X</button>
     </div>
-    -->
+    --> 
     <!--plantilla para el formulario para agregar una serie-->
     <div id="modal_nueva_serie" class="modal oculto">        
         <form id="nueva_serie" class="nueva_serie">
@@ -74,9 +74,22 @@
                 <label for="nueva_serie_cantidad_capitulos" class="cantidad_capitulos_label" id = "nueva_serie_cantidad_capitulos_label">Cantidad de capítulos:</label>
                 <input type="number" name = "nueva_serie_cantidad_capitulos" min = "1" class="cantidad_capitulos_input" required 
                 id="nueva_serie_cantidad_capitulos" placeholder="N°" value = "">                    
-            </div>            
-            <div class="campo">                
-                <button class="btn btn_modal" id = "nueva_serie_btn_agregar">Agregar</button>                
+            </div>  
+            <!--
+            <div class="campo">
+                <label for="">Subir imágen (opcional):</label>                
+                <img class="nueva-serie__campo__img" src="assets/imgs/fondo01.jpeg" alt="">
+                <label class="cantidad_capitulos_label" >Subí un archivo: </label>
+                <input type="file" name="" id="imagen-archivo">
+                <button class="btn">Subir</button>
+            </div> 
+            -->
+            <div class="campo campo_nueva_serie_titulo">
+                <label class="nueva_serie_titulo" for="nueva_serie_enlace">Enlace:</label>
+                <input type="text" name="nueva_serie_titulo" required id="nueva_serie_enlace" placeholder="Desde donde veo la serie" value = "">
+            </div>         
+            <div class="campo ">                
+                <button class="btn btn_modal" id = "nueva_serie_btn_agregar">Agregar Serie</button>                
             </div>
             <button class="btn alert btn_modal_cerrar" id = "nueva_serie_btn_cerrar">X</button>
             <label  id="nueva_serie_mensaje_error" class="nueva_serie_mensaje_error oculto">Mensaje de error</label>
